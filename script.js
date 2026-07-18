@@ -7,7 +7,7 @@ const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 let currentCipherId = null;
 
 // Ensure your chosen audio file is named exactly this and sits in your GitHub repo
-const rejectionSound = new Audio('reject.mp3');
+const rejectionSound = new Audio('reject.flac');
 rejectionSound.volume = 0.8; 
 
 // 3. DOM Elements

@@ -21,14 +21,13 @@ function validateKey() {
         
         // Placeholder for the next step (e.g., redirecting to the next puzzle)
         setTimeout(() => {
-            // window.location.href = "/stage-two.html";
             alert("This is where the server-side authentication will eventually take over.");
         }, 1500);
     } else {
         feedback.textContent = "Sequence invalid.";
         feedback.className = "error";
         
-        // Clear input after a brief delay
+        // Clear input after a brief delay for a clean UX
         setTimeout(() => {
             document.getElementById('keyInput').value = '';
             feedback.classList.add('hidden');

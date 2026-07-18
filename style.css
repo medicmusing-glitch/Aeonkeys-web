@@ -22,7 +22,7 @@ body {
     padding: 4rem;
     border: 1px solid #3a352d;
     border-radius: 4px;
-    box-shadow: 0 0 30px rgba(0,0,0,0.8);
+    box-shadow: 0 0 30px rgba(0,0,0,0.9);
     max-width: 600px;
     width: 90%;
 }
@@ -41,10 +41,12 @@ h1 {
     width: 70%;
 }
 
-.instruction {
+.quote {
     font-size: 1.1rem;
     margin-bottom: 2rem;
     opacity: 0.8;
+    font-style: italic;
+    letter-spacing: 0.05em;
 }
 
 .cipher-text {
@@ -72,11 +74,12 @@ input {
     font-size: 1rem;
     outline: none;
     width: 250px;
-    transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 input:focus {
     box-shadow: 0 0 10px rgba(212, 196, 168, 0.2);
+    border-color: #fff;
 }
 
 button {
@@ -87,17 +90,18 @@ button {
     font-family: 'Cinzel', serif;
     font-weight: bold;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 button:hover {
     background: #fff;
+    color: #000;
 }
 
 #feedback {
     font-family: 'Courier Prime', monospace;
     font-size: 0.9rem;
-    height: 20px; /* Prevents layout shift */
+    height: 20px; /* Prevents layout shift when text appears */
 }
 
 .hidden {

@@ -1,22 +1,43 @@
+/* --- Your Original Styles (Restored) --- */
 body {
-    background-color: #1a1a1a;
+    background-color: #000;
     color: #d4af37;
-    font-family: 'Times New Roman', serif;
+    font-family: 'Georgia', serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    transition: filter 0.3s ease;
 }
 
 .container {
     border: 1px solid #d4af37;
-    padding: 2rem;
+    padding: 40px;
     text-align: center;
-    width: 400px;
+    width: 500px;
 }
 
+h1 { font-size: 2rem; letter-spacing: 5px; }
+
+#cipher-text { margin: 20px 0; font-style: italic; }
+
+input {
+    background: transparent;
+    border: 1px solid #d4af37;
+    color: #d4af37;
+    padding: 10px;
+    width: 250px;
+}
+
+button {
+    background: #d4af37;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* --- Required Animation --- */
 .tear-effect {
     animation: tear-animation 0.5s ease-in-out;
 }
@@ -25,20 +46,4 @@ body {
     0% { filter: brightness(1); }
     50% { filter: brightness(0.2) saturate(0); }
     100% { filter: brightness(1); }
-}
-
-#cipher-input {
-    background: transparent;
-    border: 1px solid #d4af37;
-    color: #d4af37;
-    padding: 10px;
-    width: 200px;
-    text-align: center;
-}
-
-#submit-btn {
-    background: #d4af37;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
 }

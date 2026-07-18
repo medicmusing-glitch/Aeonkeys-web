@@ -15,11 +15,10 @@ async function loadCipher() {
         if (error) throw error;
         if (data && data.length > 0) {
             currentCipherId = data[0].id;
-            if (cipherText) cipherText.textContent = data[0].text_to_decode;
-            cipherInput.value = ""; 
+            cipherText.textContent = data[0].text_to_decode;
         }
     } catch (err) {
-        console.error("Archive connection failed:", err);
+        console.error("Error loading cipher:", err);
     }
 }
 
@@ -30,11 +29,10 @@ function triggerFailure() {
 }
 
 async function verifySolution() {
-    const solution = cipherInput.value;
     try {
         const { data, error } = await dbClient.rpc('verify_cipher_solution', {
             p_cipher_id: currentCipherId,
-            p_user_guess: solution
+            p_user_guess: cipherInput.value
         });
 
         if (error) throw error;
@@ -50,7 +48,5 @@ async function verifySolution() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    submitBtn.addEventListener('click', verifySolution);
-    loadCipher();
-});
+submitBtn.addEventListener('click', verifySolution);
+loadCipher();

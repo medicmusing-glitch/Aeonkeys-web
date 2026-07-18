@@ -10,7 +10,6 @@ const dbClient = window.supabase.createClient(
 const rejectionSound = new Audio('reject.flac');
 
 // DOM Elements
-const cipherQuote = document.getElementById('cipher-quote');
 const cipherText = document.getElementById('cipher-text');
 const cipherInput = document.getElementById('cipher-input');
 const submitBtn = document.getElementById('submit-btn');
@@ -27,12 +26,14 @@ async function loadCipher() {
         if (error) throw error;
 
         if (data && data.length > 0) {
-            // Mapping data directly from the array returned by RPC
-            currentCipherId = data[0].cipher_id;
+            // Mapping from your table schema
+            currentCipherId = data[0].id;
             
-            // Updating DOM elements directly
-            if (cipherQuote) cipherQuote.textContent = "DECRYPTION REQUIRED";
+            // Display only the cipher text; quote remains static in your HTML
             if (cipherText) cipherText.textContent = data[0].text_to_decode;
+            
+            // Ensure input starts empty
+            cipherInput.value = ""; 
             
             console.log("Cipher loaded:", data[0]);
         }
@@ -46,8 +47,8 @@ async function verifySolution() {
     
     try {
         const { data, error } = await dbClient.rpc('verify_cipher_solution', {
-            p_id: currentCipherId,
-            p_solution: solution
+            p_cipher_id: currentCipherId,
+            p_user_guess: solution
         });
 
         if (error) throw error;
@@ -64,7 +65,7 @@ async function verifySolution() {
     }
 }
 
-// Ensure DOM is ready before running
+// Ensure DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     submitBtn.addEventListener('click', verifySolution);
     loadCipher();

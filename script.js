@@ -26,10 +26,12 @@ async function loadCipher() {
         if (error) throw error;
 
         if (data && data.length > 0) {
-            // Mapping from your table schema
             currentCipherId = data[0].id;
             
-            // Display only the cipher text; quote remains static in your HTML
+            // We NO LONGER touch cipherQuote here, 
+            // leaving your static HTML quote untouched.
+            
+            // Only update the encrypted cipher text
             if (cipherText) cipherText.textContent = data[0].text_to_decode;
             
             // Ensure input starts empty

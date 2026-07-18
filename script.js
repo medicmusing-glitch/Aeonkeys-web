@@ -1,9 +1,13 @@
 // ==========================================
-// PASTE YOUR SUPABASE CREDENTIALS HERE
+// SUPABASE CLIENT INITIALIZATION
 // ==========================================
-const dbClient = window.supabase.createClient('YOUR_SUPABASE_URL', 'YOUR_SUPABASE_ANON_KEY');
+// Initializing with Project URL and Anon Key
+const dbClient = window.supabase.createClient(
+    'https://yixuuxsvapjhxrqhpupm.supabase.co', 
+    'sb_publishable_s_78prpZQRQDdfU82dC9zA_XKHh7xPi'
+);
 
-// Audio Asset
+// Audio Asset for failure states
 const rejectionSound = new Audio('reject.flac');
 
 // DOM Elements
@@ -14,9 +18,12 @@ const submitBtn = document.getElementById('submit-btn');
 
 let currentCipherId = null;
 
+// ==========================================
+// CORE LOGIC
+// ==========================================
 async function loadCipher() {
     try {
-        // Use dbClient instead of supabase
+        // RPC call to fetch a random cipher entry
         const { data, error } = await dbClient.rpc('get_random_cipher');
         
         if (error) throw error;
@@ -31,5 +38,35 @@ async function loadCipher() {
     }
 }
 
-// Ensure loadCipher runs
+async function verifySolution() {
+    const solution = cipherInput.value;
+    
+    try {
+        // RPC call to verify the solution against the current ID
+        const { data, error } = await dbClient.rpc('verify_cipher_solution', {
+            p_id: currentCipherId,
+            p_solution: solution
+        });
+
+        if (error) throw error;
+
+        if (data === true) {
+            alert("Access Granted");
+            // Add your transition logic here
+        } else {
+            // Trigger failure animation and audio
+            rejectionSound.play();
+            // Assuming your CSS class for the "reality-tear" effect is 'tear-effect'
+            document.body.classList.add('tear-effect');
+            setTimeout(() => document.body.classList.remove('tear-effect'), 1000);
+        }
+    } catch (err) {
+        console.error("Verification error:", err);
+    }
+}
+
+// Event Listeners
+submitBtn.addEventListener('click', verifySolution);
+
+// Initialize
 loadCipher();

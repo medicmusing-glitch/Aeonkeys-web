@@ -1,8 +1,7 @@
-/* --- Your Original Styles (Restored) --- */
 body {
     background-color: #000;
     color: #d4af37;
-    font-family: 'Georgia', serif;
+    font-family: 'Times New Roman', serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,24 +11,25 @@ body {
 
 .container {
     border: 1px solid #d4af37;
-    padding: 40px;
+    padding: 30px;
     text-align: center;
     width: 500px;
 }
 
-h1 { font-size: 2rem; letter-spacing: 5px; }
+h1 { letter-spacing: 0.2rem; margin-bottom: 10px; }
+p { font-style: italic; margin-bottom: 20px; }
 
-#cipher-text { margin: 20px 0; font-style: italic; }
-
-input {
+#cipher-input {
     background: transparent;
     border: 1px solid #d4af37;
     color: #d4af37;
     padding: 10px;
-    width: 250px;
+    width: 280px;
+    text-align: center;
+    margin-right: 5px;
 }
 
-button {
+#submit-btn {
     background: #d4af37;
     border: none;
     padding: 10px 20px;
@@ -37,11 +37,8 @@ button {
     font-weight: bold;
 }
 
-/* --- Required Animation --- */
-.tear-effect {
-    animation: tear-animation 0.5s ease-in-out;
-}
-
+/* Animation */
+.tear-effect { animation: tear-animation 0.5s ease-in-out; }
 @keyframes tear-animation {
     0% { filter: brightness(1); }
     50% { filter: brightness(0.2) saturate(0); }

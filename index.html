@@ -3,33 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AeonKeys | Archive Access</title>
+    <title>Aeon Keys</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Import Google Fonts for the cinematic and cryptographic aesthetic -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Courier+Prime&display=swap" rel="stylesheet">
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="main-container">
         <h1>AEON KEYS</h1>
-        <div class="divider"></div>
-
-        <!-- The psychological quote from Julius Caesar -->
-        <p class="quote">"Men freely believe that which they desire."</p>
-
-        <!-- Dynamic Cipher injected via Supabase -->
-        <p class="cipher-text" id="cipher-text-display">CONNECTING TO THE ARCHIVE...</p>
-
-        <div class="input-group">
-            <!-- Input box with no placeholder for a colder feel -->
-            <input type="text" id="cipher-input" autocomplete="off">
-            <button id="submitBtn">SUBMIT</button>
+        <div id="cipher-display">
+            <p id="cipher-quote">CONNECTING TO THE ARCHIVE...</p>
+            <p id="cipher-text"></p>
         </div>
-        <p id="feedback" class="hidden"></p>
+        <div class="input-group">
+            <input type="text" id="cipher-input" autocomplete="off" spellcheck="false" placeholder="Enter solution">
+            <button id="submit-btn">SUBMIT</button>
+        </div>
     </div>
-
-    <!-- Supabase Library -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <!-- Custom Application Logic -->
     <script src="script.js"></script>
 </body>
 </html>

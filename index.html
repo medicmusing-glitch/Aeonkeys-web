@@ -12,21 +12,24 @@
     <div class="container">
         <h1>AEON KEYS</h1>
         <div class="divider"></div>
-        
+
         <!-- The psychological quote from Julius Caesar -->
         <p class="quote">"Men freely believe that which they desire."</p>
-        
-        <!-- Caesar Cipher: Shift +3 -->
-        <p class="cipher-text">D VLPSOH VKLIW UHYHDOV WKH SDWK</p>
-        
+
+        <!-- Dynamic Cipher injected via Supabase -->
+        <p class="cipher-text" id="cipher-text-display">CONNECTING TO THE ARCHIVE...</p>
+
         <div class="input-group">
             <!-- Input box with no placeholder for a colder feel -->
-            <input type="text" id="keyInput" autocomplete="off">
+            <input type="text" id="cipher-input" autocomplete="off">
             <button id="submitBtn">SUBMIT</button>
         </div>
         <p id="feedback" class="hidden"></p>
     </div>
 
+    <!-- Supabase Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Custom Application Logic -->
     <script src="script.js"></script>
 </body>
 </html>

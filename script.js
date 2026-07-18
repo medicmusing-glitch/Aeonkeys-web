@@ -24,16 +24,17 @@ async function loadCipher() {
     try {
         const { data, error } = await dbClient.rpc('get_random_cipher');
         
-        // Debugging line to see exact response in console
-        console.log("Database Response:", data);
-        
         if (error) throw error;
 
-        // Accessing fields based on the columns 'cipher_id' and 'text_to_decode'
         if (data && data.length > 0) {
+            // Mapping data directly from the array returned by RPC
             currentCipherId = data[0].cipher_id;
-            cipherQuote.textContent = "DECRYPTION REQUIRED";
-            cipherText.textContent = data[0].text_to_decode;
+            
+            // Updating DOM elements directly
+            if (cipherQuote) cipherQuote.textContent = "DECRYPTION REQUIRED";
+            if (cipherText) cipherText.textContent = data[0].text_to_decode;
+            
+            console.log("Cipher loaded:", data[0]);
         }
     } catch (err) {
         console.error("Archive connection failed:", err);
@@ -63,8 +64,8 @@ async function verifySolution() {
     }
 }
 
-// Event Listeners
-submitBtn.addEventListener('click', verifySolution);
-
-// Initialize
-loadCipher();
+// Ensure DOM is ready before running
+document.addEventListener('DOMContentLoaded', () => {
+    submitBtn.addEventListener('click', verifySolution);
+    loadCipher();
+});

@@ -1,9 +1,7 @@
 // ==========================================
 // PASTE YOUR SUPABASE CREDENTIALS HERE
 // ==========================================
-const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const supabase = window.supabase.createClient('YOUR_SUPABASE_URL', 'YOUR_SUPABASE_ANON_KEY');
 
 // Audio Asset (Uncompressed FLAC)
 const rejectionSound = new Audio('reject.flac');

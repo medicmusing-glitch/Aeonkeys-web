@@ -23,15 +23,16 @@ let currentCipherId = null;
 // ==========================================
 async function loadCipher() {
     try {
-        // RPC call to fetch a random cipher entry
         const { data, error } = await dbClient.rpc('get_random_cipher');
         
         if (error) throw error;
 
         if (data && data.length > 0) {
-            currentCipherId = data[0].id;
-            cipherQuote.textContent = `"${data[0].quote}"`;
-            cipherText.textContent = data[0].encrypted_text;
+            currentCipherId = data[0].cipher_id; // Updated from id
+            // Assuming the quote was removed from this specific return, 
+            // or you can add a label here if needed
+            cipherQuote.textContent = "DECRYPTION REQUIRED"; 
+            cipherText.textContent = data[0].text_to_decode; // Updated from encrypted_text
         }
     } catch (err) {
         console.error("Archive connection failed:", err);

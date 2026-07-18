@@ -1,106 +1,44 @@
-:root {
-    --bg-color: #0f0f0f;
-    --text-color: #d8cba7; /* Gothic gold/tan */
-    --success-color: #2e8b57;
-}
-
 body {
-    margin: 0;
-    padding: 0;
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    background-color: #1a1a1a;
+    color: #d4af37;
     font-family: 'Times New Roman', serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    overflow: hidden;
+    margin: 0;
+    transition: filter 0.3s ease;
 }
 
 .container {
-    border: 1px solid #1a1a1a;
-    background: linear-gradient(180deg, #111 0%, #0a0a0a 100%);
-    padding: 50px;
+    border: 1px solid #d4af37;
+    padding: 2rem;
     text-align: center;
-    width: 650px;
-    box-shadow: 0 0 30px rgba(0,0,0,0.9);
+    width: 400px;
 }
 
-h1 {
-    font-size: 2.5rem;
-    letter-spacing: 0.6rem;
-    margin-bottom: 40px;
-    font-weight: normal;
+.tear-effect {
+    animation: tear-animation 0.5s ease-in-out;
 }
 
-#cipher-quote {
-    font-style: italic;
-    font-size: 1.1rem;
-    margin-bottom: 25px;
+@keyframes tear-animation {
+    0% { filter: brightness(1); }
+    50% { filter: brightness(0.2) saturate(0); }
+    100% { filter: brightness(1); }
 }
 
-#cipher-text {
-    font-size: 1.4rem;
-    letter-spacing: 0.3rem;
-    margin-bottom: 40px;
-    word-wrap: break-word;
-}
-
-.input-group {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-}
-
-input {
+#cipher-input {
     background: transparent;
-    border: 1px solid var(--text-color);
-    color: var(--text-color);
-    padding: 12px;
-    font-family: inherit;
-    font-size: 1.1rem;
-    width: 300px;
+    border: 1px solid #d4af37;
+    color: #d4af37;
+    padding: 10px;
+    width: 200px;
     text-align: center;
-    text-transform: uppercase;
 }
 
-input:focus {
-    outline: none;
-    border-color: #fff;
-}
-
-button {
-    background-color: var(--text-color);
-    color: var(--bg-color);
+#submit-btn {
+    background: #d4af37;
     border: none;
-    padding: 12px 25px;
-    font-family: inherit;
-    font-weight: bold;
+    padding: 10px 20px;
     cursor: pointer;
-    transition: opacity 0.2s;
-}
-
-button:hover {
-    opacity: 0.8;
-}
-
-/* Success State */
-.success {
-    color: var(--success-color) !important;
-    text-shadow: 0 0 15px rgba(46, 139, 87, 0.6);
-}
-
-/* Reality-Tear Glitch Animation */
-body.reality-tear {
-    animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both;
-    background-color: #2a0000;
-}
-
-@keyframes glitch {
-    0% { transform: translate(0) }
-    20% { transform: translate(-10px, 10px) }
-    40% { transform: translate(-10px, -10px) }
-    60% { transform: translate(10px, 10px) }
-    80% { transform: translate(10px, -10px) }
-    100% { transform: translate(0) }
 }

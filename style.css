@@ -1,28 +1,113 @@
+/* Reset margins and set base styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    background-color: #0a0a0a;
-    color: #e0e0e0;
-    font-family: 'Courier New', Courier, monospace;
+    /* Creates a dark, shadowy vignette background */
+    background: radial-gradient(circle at center, #2c2925 0%, #0d0c0b 100%);
+    color: #d4c4a8; /* Aged parchment/bone color */
+    font-family: 'Cinzel', serif;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    text-align: center;
 }
 
-.container { text-align: center; }
+.container {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 4rem;
+    border: 1px solid #3a352d;
+    border-radius: 4px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.8);
+    max-width: 600px;
+    width: 90%;
+}
+
+h1 {
+    font-size: 2.5rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+
+.divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #d4c4a8, transparent);
+    margin: 0 auto 2rem auto;
+    width: 70%;
+}
+
+.instruction {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    opacity: 0.8;
+}
+
+.cipher-text {
+    font-family: 'Courier Prime', monospace;
+    font-size: 1.5rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 2.5rem;
+    color: #a3957b; /* Slightly darker than main text to look faded */
+    user-select: all; /* Makes it easy for users to copy/paste */
+}
+
+.input-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+}
 
 input {
     background: transparent;
-    border: 1px solid #444;
-    color: white;
-    padding: 10px;
-    margin: 10px;
+    border: 1px solid #d4c4a8;
+    color: #d4c4a8;
+    padding: 10px 15px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 1rem;
+    outline: none;
+    width: 250px;
+    transition: box-shadow 0.3s ease;
+}
+
+input:focus {
+    box-shadow: 0 0 10px rgba(212, 196, 168, 0.2);
 }
 
 button {
-    background: #222;
-    color: white;
-    border: 1px solid #444;
-    cursor: pointer;
+    background: #d4c4a8;
+    color: #0d0c0b;
+    border: none;
     padding: 10px 20px;
+    font-family: 'Cinzel', serif;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #fff;
+}
+
+#feedback {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.9rem;
+    height: 20px; /* Prevents layout shift */
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.error {
+    color: #8b0000; /* Deep red for incorrect entries */
+}
+
+.success {
+    color: #4a5d23; /* Muted green for success */
 }

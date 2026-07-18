@@ -1,94 +1,102 @@
-// 1. Initialize Supabase Client
+// ==========================================
+// PASTE YOUR SUPABASE CREDENTIALS HERE
+// ==========================================
 const SUPABASE_URL = 'YOUR_SUPABASE_URL';
 const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
-const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// 2. Global State & Audio
+// Audio Asset (Uncompressed FLAC)
+const rejectionSound = new Audio('reject.flac');
+
+// DOM Elements
+const cipherQuote = document.getElementById('cipher-quote');
+const cipherText = document.getElementById('cipher-text');
+const cipherInput = document.getElementById('cipher-input');
+const submitBtn = document.getElementById('submit-btn');
+
+// Current puzzle state
 let currentCipherId = null;
 
-// Ensure your chosen audio file is named exactly this and sits in your GitHub repo
-const rejectionSound = new Audio('reject.flac');
-rejectionSound.volume = 0.8; 
-
-// 3. DOM Elements
-const cipherDisplay = document.getElementById('cipher-text-display');
-const cipherInput = document.getElementById('cipher-input');
-const submitBtn = document.getElementById('submitBtn');
-
-// 4. Fetch the Cipher on Page Load
-async function fetchCipher() {
+// Fetch cipher from database
+async function loadCipher() {
     try {
         const { data, error } = await supabase.rpc('get_random_cipher');
         
         if (error) throw error;
-        
+
         if (data && data.length > 0) {
-            currentCipherId = data[0].cipher_id;
-            cipherDisplay.innerText = data[0].text_to_decode;
+            currentCipherId = data[0].id;
+            cipherQuote.textContent = `"${data[0].quote}"`;
+            cipherText.textContent = data[0].encrypted_text;
+        } else {
+            cipherQuote.textContent = "THE VOID REMAINS SILENT.";
+            cipherText.textContent = "";
         }
-    } catch (error) {
-        console.error('Error fetching the cipher:', error);
-        cipherDisplay.innerText = "THE VOID REMAINS SILENT."; 
+    } catch (err) {
+        console.error("Archive connection failed:", err);
+        cipherQuote.textContent = "CONNECTION LOST.";
     }
 }
 
-// 5. Verify the Answer on Submit
-async function verifyAnswer() {
-    const userGuess = cipherInput.value.trim();
-    
-    if (!userGuess || !currentCipherId) return;
+// Verify solution
+async function verifySolution() {
+    const attempt = cipherInput.value.trim().toUpperCase();
+    if (!attempt || !currentCipherId) return;
 
     try {
-        const { data: isCorrect, error } = await supabase.rpc('verify_cipher_solution', {
+        const { data, error } = await supabase.rpc('verify_cipher_solution', {
             p_cipher_id: currentCipherId,
-            p_user_guess: userGuess
+            p_attempt: attempt
         });
 
         if (error) throw error;
 
-        if (isCorrect) {
-            // SUCCESS LOGIC: Access Granted
-            cipherInput.style.color = "#4ade80"; // A terminal green for success
-            cipherInput.value = "ACCESS GRANTED";
-            cipherInput.disabled = true;
-            submitBtn.disabled = true;
-            
-            // Redirect to the main platform. Change '/app.html' to your actual file.
-            setTimeout(() => {
-                window.location.href = '/app.html'; 
-            }, 1500);
-
+        if (data === true) {
+            handleSuccess();
         } else {
-            // FAILURE LOGIC: The Hostile Rejection
-            cipherInput.value = ''; 
-            cipherInput.placeholder = "ACCESS DENIED.";
-            
-            rejectionSound.currentTime = 0;
-            rejectionSound.play().catch(err => console.log("Audio blocked:", err));
-
-            document.body.classList.add('system-rejection');
-
-            setTimeout(() => {
-                document.body.classList.remove('system-rejection');
-                cipherInput.placeholder = ""; 
-            }, 400); 
+            handleFailure();
         }
-    } catch (error) {
-        console.error('Error verifying solution:', error);
+    } catch (err) {
+        console.error("Verification failed:", err);
+        handleFailure();
     }
 }
 
-// 6. Event Listeners
-window.addEventListener('DOMContentLoaded', fetchCipher);
+function handleFailure() {
+    // Trigger hostile sensory feedback
+    rejectionSound.currentTime = 0;
+    rejectionSound.play().catch(e => console.log("Audio interaction blocked:", e));
+    
+    // Trigger CSS Reality-Tear
+    document.body.classList.add('reality-tear');
+    
+    setTimeout(() => {
+        document.body.classList.remove('reality-tear');
+        cipherInput.value = ''; // Clear input on failure
+    }, 300); // Matches the 0.3s CSS animation duration
+}
 
+function handleSuccess() {
+    // Lock input and shift UI to success state
+    cipherInput.disabled = true;
+    submitBtn.disabled = true;
+    cipherQuote.classList.add('success');
+    cipherText.classList.add('success');
+    
+    cipherQuote.textContent = "AUTHORIZATION ACCEPTED.";
+    cipherText.textContent = "ACCESS GRANTED.";
+    
+    // Redirect placeholder
+    setTimeout(() => {
+        window.location.href = '/archive-access'; // Update with your actual next route
+    }, 2000);
+}
+
+// Event Listeners
+submitBtn.addEventListener('click', verifySolution);
 cipherInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        e.preventDefault();
-        verifyAnswer();
-    }
+    if (e.key === 'Enter') verifySolution();
 });
 
-submitBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    verifyAnswer();
-});
+// Initialize Handshake
+loadCipher();

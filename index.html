@@ -2,20 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AeonKeys | Archive Access</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Import Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Courier+Prime&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <h1>AEON KEYS</h1>
-        <p class="description">Input the decoded sequence to proceed.</p>
+        <div class="divider"></div>
+        <p class="instruction">Input the decoded sequence to proceed.</p>
         
-        <div id="cipher-area">
-            <p id="encrypted-text">KHOOR ZRUOG</p> <!-- Example Caesar cipher -->
-            <input type="text" id="user-input" placeholder="Enter key..." autocomplete="off">
-            <button onclick="checkAccess()">SUBMIT</button>
+        <!-- Caesar Cipher: Shift +3 -->
+        <p class="cipher-text">D VLPSOH VKLIW UHYHDOV WKH SDWK</p>
+        
+        <div class="input-group">
+            <input type="text" id="keyInput" placeholder="Enter sequence..." autocomplete="off">
+            <button id="submitBtn">SUBMIT</button>
         </div>
+        <p id="feedback" class="hidden"></p>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>

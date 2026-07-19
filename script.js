@@ -38,5 +38,4 @@ function triggerFailure() {
 
 submitBtn.addEventListener('click', verifySolution);
 
-loadCipher(); verifySolution);
 loadCipher();

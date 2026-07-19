@@ -9,7 +9,7 @@ const dbClient = window.supabase.createClient(
 const rejectionSound = new Audio('reject.flac');
 const submitBtn = document.getElementById('submit-btn'); 
 const cipherInput = document.getElementById('cipher-input'); 
-let currentCipherId = 1;
+let currentCipherId = null;
 
 async function verifySolution() {
     try {
@@ -38,15 +38,26 @@ function triggerFailure() {
 }
 async function loadCipher() {
     try {
+        // Fetch all ciphers from the table
         const { data, error } = await dbClient
-           .from('landing_ciphers')
-            .select('*')
-            .eq('id', currentCipherId)
-            .single();
+            .from('landing_ciphers') 
+            .select('*');
             
         if (error) throw error;
 
-        document.getElementById('cipher-display').innerText = data.cipher_text; 
+        if (data && data.length > 0) {
+            // Pick a random cipher from the results
+            const randomIndex = Math.floor(Math.random() * data.length);
+            const randomCipher = data[randomIndex];
+            
+            // Store the selected ID so verifySolution() knows which one to check
+            currentCipherId = randomCipher.id; 
+            
+            // Display the text on the screen
+            document.getElementById('cipher-display').innerText = randomCipher.cipher_text; 
+        } else {
+            console.warn("No ciphers found in the database.");
+        }
         
     } catch (err) {
         console.error("Error loading cipher:", err);

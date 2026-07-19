@@ -1,43 +1,39 @@
+/* Reset margins and set base styles */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
 body {
-    background-color: #000;
-    color: #d4af37;
-    font-family: 'Times New Roman', serif;
+    background: radial-gradient(circle at center, #2c2925 0%, #0d0c0b 100%);
+    color: #d4c4a8;
+    font-family: 'Cinzel', serif;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    text-align: center;
+    transition: filter 0.3s ease; /* Required for the animation transition */
 }
 
 .container {
-    border: 1px solid #d4af37;
-    padding: 30px;
-    text-align: center;
-    width: 500px;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 4rem;
+    border: 1px solid #3a352d;
+    border-radius: 4px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.8);
+    max-width: 600px;
+    width: 90%;
 }
 
-h1 { letter-spacing: 0.2rem; margin-bottom: 10px; }
-p { font-style: italic; margin-bottom: 20px; }
+h1 { font-size: 2.5rem; letter-spacing: 0.2em; margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
 
-#cipher-input {
-    background: transparent;
-    border: 1px solid #d4af37;
-    color: #d4af37;
-    padding: 10px;
-    width: 280px;
-    text-align: center;
-    margin-right: 5px;
-}
+.divider { height: 1px; background: linear-gradient(90deg, transparent, #d4c4a8, transparent); margin: 0 auto 2rem auto; width: 70%; }
 
-#submit-btn {
-    background: #d4af37;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-weight: bold;
-}
+.cipher-text { font-family: 'Courier Prime', monospace; font-size: 1.5rem; letter-spacing: 0.1em; margin-bottom: 2.5rem; color: #a3957b; }
 
-/* Animation */
+input { background: transparent; border: 1px solid #d4c4a8; color: #d4c4a8; padding: 10px 15px; font-family: 'Courier Prime', monospace; font-size: 1rem; outline: none; width: 250px; }
+
+button { background: #d4c4a8; color: #0d0c0b; border: none; padding: 10px 20px; font-family: 'Cinzel', serif; font-weight: bold; cursor: pointer; }
+
+/* The required animation */
 .tear-effect { animation: tear-animation 0.5s ease-in-out; }
 @keyframes tear-animation {
     0% { filter: brightness(1); }

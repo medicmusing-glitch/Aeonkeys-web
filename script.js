@@ -9,6 +9,7 @@ const dbClient = window.supabase.createClient(
 const rejectionSound = new Audio('reject.flac');
 const submitBtn = document.getElementById('submit-btn'); 
 const cipherInput = document.getElementById('cipher-input'); 
+let currentCipherId = 1;
 
 async function verifySolution() {
     try {
@@ -35,7 +36,22 @@ function triggerFailure() {
     document.body.classList.add('tear-effect');
     setTimeout(() => document.body.classList.remove('tear-effect'), 500);
 }
+async function loadCipher() {
+    try {
+        const { data, error } = await dbClient
+            .from('ciphers') 
+            .select('*')
+            .eq('id', currentCipherId)
+            .single();
+            
+        if (error) throw error;
 
+        document.getElementById('cipher-display').innerText = data.cipher_text; 
+        
+    } catch (err) {
+        console.error("Error loading cipher:", err);
+    }
+}
 submitBtn.addEventListener('click', verifySolution);
 
 loadCipher();

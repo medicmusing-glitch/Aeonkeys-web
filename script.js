@@ -39,7 +39,7 @@ function triggerFailure() {
 async function loadCipher() {
     try {
         const { data, error } = await dbClient
-            .from('ciphers') 
+           .from('landing_ciphers')
             .select('*')
             .eq('id', currentCipherId)
             .single();

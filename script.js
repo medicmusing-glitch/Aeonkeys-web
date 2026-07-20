@@ -21,7 +21,7 @@ async function verifySolution() {
         if (error) throw error;
         
         if (data === true) {
-            window.location.href = '/dashboard/';
+            window.location.href = '/dashboard/index.html';
         } else {{
             triggerFailure();
         }

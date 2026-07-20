@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Archive</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Using a classic, chiseled serif font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        
+        <!-- The Apex: Looming Countdown -->
+        <header class="apex">
+            <div class="timer" id="countdown-timer">71:59:59</div>
+            <div class="timer-label">until the next lock engages</div>
+        </header>
+
+        <div class="workspace">
+            
+            <!-- The Ledger: Persistent Leaderboard -->
+            <aside class="ledger">
+                <h2 class="ledger-title">The Ledger</h2>
+                <div class="ledger-scroll">
+                    <ul id="leaderboard-list">
+                        <!-- These will eventually be injected via Supabase -->
+                        <li>CipherGhost</li>
+                        <li>Null_Pointer</li>
+                        <li class="current-user">Awaiting your mark...</li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- The Crucible: Active Puzzle Area -->
+            <main class="crucible">
+                <div class="puzzle-stage">
+                    <h1 class="puzzle-title">The Prophet's Reverse</h1>
+                    
+                    <div class="parchment-container">
+                        <!-- The visual representation of the ancient text -->
+                        <p class="cipher-string">G Z O Z N R H G Z I Y V H T V I</p>
+                    </div>
+
+                    <div class="clue-box">
+                        <blockquote>"The prophet wept for Babylon, seeing the end at the beginning. He bound his lament to a rod of eight spans, so only the worthy could unroll the truth."</blockquote>
+                    </div>
+
+                    <div class="interaction-zone">
+                        <input type="text" id="solution-input" placeholder="Speak the truth..." autocomplete="off">
+                        <button id="submit-btn">Unseal</button>
+                    </div>
+                </div>
+            </main>
+
+        </div>
+    </div>
+</body>
+</html>

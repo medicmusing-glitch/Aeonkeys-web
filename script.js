@@ -20,9 +20,10 @@ async function verifySolution() {
 
         if (error) throw error;
         
-        if (data === true) {
+       if (data === true) {
+            alert("Access Granted");
             window.location.href = '/dashboard/index.html';
-        } else {{
+        } else {
             triggerFailure();
         }
     } catch (err) {

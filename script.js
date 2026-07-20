@@ -54,7 +54,7 @@ async function loadCipher() {
             currentCipherId = randomCipher.id; 
             
             // Display the text on the screen
-            document.getElementById('cipher-display').innerText = randomCipher.cipher_text; 
+            document.getElementById('cipher-text').innerText = randomCipher.cipher_text; 
         } else {
             console.warn("No ciphers found in the database.");
         }

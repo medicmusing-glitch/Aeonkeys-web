@@ -1,0 +1,203 @@
+:root {
+    --obsidian: #0a0a0a;
+    --void: #000000;
+    --faded-gold: #c5a059;
+    --terracotta: #8b3e2b;
+    --parchment: #d4c4a8;
+    --stone: #2c2c2c;
+    
+    --font-heading: 'Cinzel', serif;
+    --font-body: 'EB Garamond', serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--void);
+    background-image: radial-gradient(circle at center, var(--obsidian) 0%, var(--void) 100%);
+    color: var(--parchment);
+    font-family: var(--font-body);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.dashboard-container {
+    width: 95%;
+    max-width: 1400px;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(197, 160, 89, 0.15); /* Faint gold border */
+    box-shadow: inset 0 0 100px rgba(0,0,0,0.9);
+}
+
+/* --- THE APEX --- */
+.apex {
+    text-align: center;
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+    background: linear-gradient(to bottom, rgba(10,10,10,0.8), transparent);
+}
+
+.timer {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: var(--faded-gold);
+    letter-spacing: 0.2rem;
+    text-shadow: 0 0 15px rgba(197, 160, 89, 0.4);
+}
+
+.timer-label {
+    font-style: italic;
+    color: rgba(212, 196, 168, 0.5);
+    margin-top: 0.5rem;
+    letter-spacing: 0.1rem;
+}
+
+/* --- THE WORKSPACE --- */
+.workspace {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* --- THE LEDGER --- */
+.ledger {
+    width: 250px;
+    border-right: 1px solid rgba(197, 160, 89, 0.2);
+    padding: 2rem;
+    background: rgba(44, 44, 44, 0.1); /* Faint stone texture */
+}
+
+.ledger-title {
+    font-family: var(--font-heading);
+    color: var(--terracotta);
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    letter-spacing: 0.15rem;
+    text-transform: uppercase;
+}
+
+#leaderboard-list {
+    list-style: none;
+}
+
+#leaderboard-list li {
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(212, 196, 168, 0.1);
+    font-size: 1.1rem;
+    color: rgba(212, 196, 168, 0.8);
+}
+
+.current-user {
+    font-style: italic;
+    color: rgba(212, 196, 168, 0.4) !important;
+}
+
+/* --- THE CRUCIBLE --- */
+.crucible {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+    position: relative;
+}
+
+.puzzle-stage {
+    max-width: 700px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.puzzle-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--faded-gold);
+    margin-bottom: 3rem;
+    letter-spacing: 0.2rem;
+}
+
+.parchment-container {
+    background-color: rgba(212, 196, 168, 0.05);
+    border: 1px solid rgba(212, 196, 168, 0.2);
+    padding: 3rem;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2rem;
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
+}
+
+.cipher-string {
+    font-family: monospace; /* Monospace is crucial for cipher alignment */
+    font-size: 1.5rem;
+    letter-spacing: 0.5rem;
+    color: var(--parchment);
+}
+
+.clue-box {
+    margin-bottom: 3rem;
+    text-align: center;
+    max-width: 80%;
+}
+
+.clue-box blockquote {
+    font-style: italic;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: rgba(212, 196, 168, 0.7);
+    border-left: 2px solid var(--terracotta);
+    padding-left: 1.5rem;
+}
+
+/* --- INTERACTION ZONE --- */
+.interaction-zone {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    max-width: 400px;
+}
+
+input[type="text"] {
+    flex: 1;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--faded-gold);
+    color: var(--parchment);
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border-bottom: 1px solid var(--terracotta);
+}
+
+button {
+    background: transparent;
+    border: 1px solid var(--faded-gold);
+    color: var(--faded-gold);
+    font-family: var(--font-heading);
+    padding: 0.5rem 1.5rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: rgba(197, 160, 89, 0.1);
+    color: var(--parchment);
+}

@@ -40,3 +40,9 @@ button { background: #d4c4a8; color: #0d0c0b; border: none; padding: 10px 20px; 
     50% { filter: brightness(0.2) saturate(0); }
     100% { filter: brightness(1); }
 }
+#cipher-display {
+    margin-bottom: 2.5rem;
+}
+#cipher-quote {
+    margin-bottom: 1rem;
+}

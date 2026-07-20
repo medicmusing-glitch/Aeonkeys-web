@@ -21,8 +21,8 @@ async function verifySolution() {
         if (error) throw error;
         
         if (data === true) {
-            alert("Access Granted");
-        } else {
+            window.location.href = '/dashboard/';
+        } else {{
             triggerFailure();
         }
     } catch (err) {

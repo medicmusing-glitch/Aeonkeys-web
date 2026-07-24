@@ -201,3 +201,36 @@ button:hover {
     background: rgba(197, 160, 89, 0.1);
     color: var(--parchment);
 }
+#puzzle-container {
+    background-color: #1a1a1a; /* Dark obsidian base */
+    border: 2px solid #333;
+    padding: 2rem;
+    max-width: 400px;
+    margin: 2rem auto;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    font-family: 'Courier New', monospace; /* Archivist vibe */
+    position: relative;
+}
+
+/* Adding 'scroll' ends */
+#puzzle-container::before, #puzzle-container::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    bottom: -5px;
+    width: 10px;
+    background: #444; /* Dark metal/stone border */
+}
+
+#puzzle-container::before { left: -15px; }
+#puzzle-container::after { right: -15px; }
+
+#cipher-display {
+    font-size: 1.5rem;
+    letter-spacing: 0.2rem;
+    color: #d1d1d1;
+    margin-bottom: 1.5rem;
+    display: block;
+}

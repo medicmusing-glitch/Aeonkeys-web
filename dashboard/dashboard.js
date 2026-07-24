@@ -1,5 +1,5 @@
 // dashboard.js
-const supabase = supabase.createClient(''https://yixuuxsvapjhxrqhpupm.supabase.co', 
+const supabase = supabase.createClient('https://yixuuxsvapjhxrqhpupm.supabase.co', 
     'sb_publishable_s_78prpZQRQDdfU82dC9zA_XKHh7xPi',);
 
 async function unseal() {

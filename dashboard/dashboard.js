@@ -1,5 +1,6 @@
 // dashboard.js
-const supabase = supabase.createClient('YOUR_SUPABASE_URL', 'YOUR_SUPABASE_ANON_KEY');
+const supabase = supabase.createClient(''https://yixuuxsvapjhxrqhpupm.supabase.co', 
+    'sb_publishable_s_78prpZQRQDdfU82dC9zA_XKHh7xPi',);
 
 async function unseal() {
     const input = document.getElementById('cipher-input').value.toUpperCase();
